@@ -51,7 +51,7 @@ function ProductDetailsPage() {
                 className="w-full h-full object-cover transition-transform transform duration-300 ease-in-out hover:scale-105"
               />
             </div>
-            <div className="flex mt-6 justify-center gap-4 overflow-x-auto h-[20vh]">
+            <div className="flex mt-6 justify-center gap-4 overflow-x-auto h-[15vh]">
               {[
                 productDetails?.thumbnail,
                 ...(productDetails?.images || []),

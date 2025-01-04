@@ -7,52 +7,58 @@ function CartTile({ singleCartItem }) {
 
   return (
     <Fragment>
-      <div className="grid grid-cols-3 items-start gap-5">
-        <div className="col-span-2 flex items-start gap-4">
-          <div className="w-28 h-28 max-sm:w-20 shrink-0 bg-gray-400 p-1 rounded-sm">
-            <img
-              src={singleCartItem?.thumbnail}
-              className="w-full h-full object-contain"
-            />
-          </div>
-          <div>
-            <h3 className="text-base font-bold text-gray-900">
-              {singleCartItem?.title}
-            </h3>
-            <button
-              onClick={() => handleRemoveFromCart(singleCartItem, true)}
-              className="text-sm px-4 py-3 bg-black text-white font-extrabold"
-            >
-              REMOVE
-            </button>
-          </div>
+      <div className="flex flex-col md:flex-row items-center gap-6 p-4 rounded-lg shadow-md bg-white border border-gray-200">
+        <div className="w-32 h-32 bg-gray-100 p-2 rounded-lg flex-shrink-0">
+          <img
+            src={singleCartItem?.thumbnail}
+            alt={singleCartItem?.title}
+            className="w-full h-full object-contain"
+          />
         </div>
-        <div className="ml-auto">
-          <h3 className="text-lg font-bold text-gray-900">
-            {/* ${singleCartItem?.totalPrice.toFixed(2)} */}$
-            {singleCartItem?.totalPrice}
+
+        <div className="flex flex-col justify-between w-full md:w-2/3">
+          <h3 className="text-lg font-bold text-gray-800 truncate">
+            {singleCartItem?.title}
           </h3>
-          <p className="mt-2 mb-3 font-bold text-[16px]">
+          <p className="text-sm text-gray-500 mt-1 mb-4 truncate">
+            {singleCartItem?.description || "No description available."}
+          </p>
+          <button
+            onClick={() => handleRemoveFromCart(singleCartItem, true)}
+            className="self-start text-sm px-4 py-2 rounded-md text-white bg-[#3a7ef9] hover:bg-blue-600 shadow-lg transition transform duration-300 hover:scale-105"
+          >
+            Remove
+          </button>
+        </div>
+
+        <div className="flex flex-col items-end gap-3">
+          <h3 className="text-lg font-semibold text-gray-800">
+            ${singleCartItem?.totalPrice?.toFixed(2)}
+          </h3>
+          <p className="text-sm font-medium text-gray-600">
             Quantity: {singleCartItem?.quantity}
           </p>
-          <div className="mt-3">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => handleRemoveFromCart(singleCartItem, false)}
-              className="disabled:opacity-65 bg-white border border-[#000]"
+              className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
               disabled={singleCartItem?.quantity === 1}
             >
-              -
+              <span className="text-lg font-bold">-</span>
             </button>
+            <span className="text-sm font-medium text-gray-800">
+              {singleCartItem?.quantity}
+            </span>
             <button
               onClick={() => handleAddToCart(singleCartItem)}
-              className="bg-white border border-[#000]"
+              className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
             >
-              +
+              <span className="text-lg font-bold">+</span>
             </button>
           </div>
         </div>
       </div>
-      <hr className="border-gray-500" />
+      <hr className="my-4 border-gray-300" />
     </Fragment>
   );
 }

@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 const Hero = ({ data, highlights }) => {
+  const navigate = useNavigate();
   return (
     <div id="home">
       <div
@@ -13,7 +16,10 @@ const Hero = ({ data, highlights }) => {
           <p className="mt-4 text-lg md:text-xl text-gray-200">
             {data.subtitle}
           </p>
-          <button className="mt-6 px-8 py-3 text-lg bg-[#3a7ef9] hover:bg-blue-600 text-white rounded-lg shadow-lg transform transition hover:scale-105">
+          <button
+            onClick={() => navigate("/products")}
+            className="mt-6 px-8 py-3 text-lg bg-[#3a7ef9] hover:bg-blue-600 text-white rounded-lg shadow-lg transform transition hover:scale-105"
+          >
             {data.cta}
           </button>
         </div>
